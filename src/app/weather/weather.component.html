@@ -1,0 +1,55 @@
+<div class="dashboard">
+  <!-- Top Left: User Info -->
+  <div class="user-info">
+    <div class="user-details">
+      <h3>👤 {{username}}</h3>
+      <p>🕰️ {{currentTime}}</p>
+    </div>
+  </div>
+
+  <!-- Right Side: Weather Widget -->
+  <div class="weather-widget">
+    <h4>🌦️ Weather</h4>
+    <div class="weather-info">
+      <p class="city">{{weather.name}}</p>
+      <p class="temp">{{weather.main?.temp}}°C</p>
+      <p class="desc">{{weather.weather?.[0]?.description}}</p>
+    </div>
+  </div>
+
+  <!-- Main Content: Development Tools Dashboard -->
+  <div class="main-content">
+    <h2>Development Dashboard</h2>
+    
+    <div class="projects-grid">
+      <div *ngFor="let project of projects" class="project-card">
+        <h3>{{project.name}}</h3>
+        
+        <div class="tools-section">
+          <div class="tool-item">
+            <a [href]="project.jira" target="_blank" class="tool-link jira">
+              📋 Jira
+            </a>
+          </div>
+          
+          <div class="tool-item">
+            <a [href]="project.jenkins" target="_blank" class="tool-link jenkins">
+              🔧 Jenkins
+            </a>
+          </div>
+          
+          <div class="tool-item">
+            <a [href]="project.sonar" target="_blank" class="tool-link sonar">
+              📈 SonarQube
+            </a>
+          </div>
+        </div>
+        
+        <div class="coverage-info">
+          <span class="coverage-label">Code Coverage:</span>
+          <span class="coverage-value">{{project.coverage}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

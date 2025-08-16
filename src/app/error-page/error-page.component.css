@@ -1,0 +1,30 @@
+.error-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.login-link {
+  margin-top: 20px;
+}
+
+.login-url {
+  color: #2196F3;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 1px solid #2196F3;
+  border-radius: 5px;
+}
+
+.login-url:hover {
+  background: #2196F3;
+  color: white;
+}

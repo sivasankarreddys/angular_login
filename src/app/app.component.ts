@@ -12,8 +12,15 @@ export class AppComponent  {
   message = '';
   username='';
   password='';
+  isLoggedIn = false;
+  loginFailed = false;
+  isSignupPage = false;
 
-  constructor(private loginService: LoginService, private router:Router){}
+  constructor(private loginService: LoginService, private router:Router){
+    this.router.events.subscribe(() => {
+      this.isSignupPage = this.router.url === '/signup';
+    });
+  }
  getLogin(){
     this.loginService.getLogin(this.name).subscribe(data => this.name=data);
   }
@@ -25,14 +32,17 @@ export class AppComponent  {
      this.loginService.validate(credentials).subscribe({
       next:(res) => {
         if(res === 'login successful!'){
-          
-         this.router.navigate(['/dashboard']); 
-        }
-        else{
-          this.router.navigate(['http://localhost:4200'])
+          this.isLoggedIn = true;
+          this.router.navigate(['/weather']); 
+        } else {
+          this.loginFailed = true;
+          this.router.navigate(['/error']);
         }
         this.message = res},
-      error:() => this.message ='Login failed due to server error'
+      error:() => {
+        this.loginFailed = true;
+        this.router.navigate(['/error']);
+      }
      });
-  }
+  } 
 }
